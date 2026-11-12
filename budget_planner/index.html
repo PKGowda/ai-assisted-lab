@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Track your student budget, expenses, and spending history.">
+    <title>Student Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <p class="eyebrow">STUDENT FINANCES</p>
+        <h1>Expense Tracker</h1>
+        <p>Keep your budget on track, one expense at a time.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <p class="tracker-status" id="tracker-status" role="status" aria-live="polite" aria-atomic="true"></p>
+
+      <section class="panel" aria-labelledby="budget-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR PLAN</p>
+            <h2 id="budget-heading">Set your monthly budget</h2>
+          </div>
+        </div>
+        <form id="budget-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="monthly-budget">Monthly budget</label>
+              <div class="input-with-prefix">
+                <span aria-hidden="true">$</span>
+                <input
+                  id="monthly-budget"
+                  name="budget"
+                  type="number"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="0.00"
+                  inputmode="decimal"
+                  required
+                >
+              </div>
+            </div>
+            <button type="submit">Save budget</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="summary-section" aria-labelledby="summary-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">AT A GLANCE</p>
+            <h2 id="summary-heading">Your summary</h2>
+          </div>
+        </div>
+        <div class="summary-grid">
+          <article class="summary-card">
+            <h3>Monthly budget</h3>
+            <p class="summary-amount" id="summary-budget" aria-live="polite">$0.00</p>
+          </article>
+          <article class="summary-card">
+            <h3>Spent this month</h3>
+            <p class="summary-amount" id="summary-spent" aria-live="polite">$0.00</p>
+          </article>
+          <article class="summary-card">
+            <h3>Remaining</h3>
+            <p class="summary-amount" id="summary-remaining" aria-live="polite">$0.00</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="expense-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">ADD A TRANSACTION</p>
+            <h2 id="expense-heading">Record an expense</h2>
+          </div>
+        </div>
+        <form id="expense-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="expense-description">Description</label>
+              <input
+                id="expense-description"
+                name="description"
+                type="text"
+                placeholder="e.g. Textbooks"
+                autocomplete="off"
+                required
+              >
+            </div>
+            <div class="form-field">
+              <label for="expense-amount">Amount</label>
+              <div class="input-with-prefix">
+                <span aria-hidden="true">$</span>
+                <input
+                  id="expense-amount"
+                  name="amount"
+                  type="number"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="0.00"
+                  inputmode="decimal"
+                  required
+                >
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="expense-category">Category</label>
+              <select id="expense-category" name="category" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="books">Books &amp; supplies</option>
+                <option value="food">Food</option>
+                <option value="housing">Housing</option>
+                <option value="transportation">Transportation</option>
+                <option value="tuition">Tuition &amp; fees</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="expense-date">Date</label>
+              <input id="expense-date" name="date" type="date" required>
+            </div>
+          </div>
+          <button type="submit">Add expense</button>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="history-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR TRANSACTIONS</p>
+            <h2 id="history-heading">Expense history</h2>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <caption class="visually-hidden">Your recorded expenses</caption>
+            <thead>
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="expense-list">
+              <tr id="empty-state">
+                <td colspan="5">No expenses yet. Add your first expense above to get started.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Small steps today, smarter spending tomorrow.</p>
+      </div>
+    </footer>
+  </body>
+</html>

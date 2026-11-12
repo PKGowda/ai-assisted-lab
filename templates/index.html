@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6ff">
+    <meta name="description" content="Test your Python fundamentals with this interactive ten-question quiz.">
+    <title>Python Knowledge Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="PyQuest home">
+        <span class="brand-mark" aria-hidden="true">Py</span>
+        <span>PyQuest</span>
+      </a>
+      <span class="topbar-label">PYTHON FUNDAMENTALS</span>
+    </header>
+
+    <main class="page-shell">
+      <section class="quiz-card" aria-live="polite">
+        <section class="screen welcome-screen" id="welcome-screen" aria-labelledby="welcome-title">
+          <div class="welcome-art" aria-hidden="true">
+            <span class="art-orbit orbit-one"></span>
+            <span class="art-orbit orbit-two"></span>
+            <span class="art-spark spark-one">✦</span>
+            <span class="art-spark spark-two">✧</span>
+            <div class="code-tile"><span>&lt;/&gt;</span></div>
+          </div>
+          <div class="welcome-content">
+            <span class="pill"><span class="pill-dot"></span> QUICK KNOWLEDGE CHECK</span>
+            <h1 id="welcome-title">Python Knowledge <span>Quiz</span></h1>
+            <p class="welcome-copy">How well do you know Python? Take a quick quiz on the essentials and see where your skills stand.</p>
+            <div class="welcome-meta">
+              <div class="meta-item">
+                <span class="meta-icon" aria-hidden="true">▤</span>
+                <span><strong>{{ question_count }} questions</strong><small>Multiple choice</small></span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-icon timer-icon" aria-hidden="true">◷</span>
+                <span><strong>About 5 minutes</strong><small>Take your time</small></span>
+              </div>
+            </div>
+            <div class="rules">
+              <strong>How it works</strong>
+              <p>Choose one answer per question. You’ll get feedback and an explanation after each answer.</p>
+            </div>
+            <button class="button button-primary start-button" id="start-button" type="button">
+              Start quiz <span aria-hidden="true">→</span>
+            </button>
+            <p class="error-message" id="welcome-error" role="alert" hidden></p>
+          </div>
+        </section>
+
+        <section class="screen quiz-screen" id="quiz-screen" aria-labelledby="question-title" hidden>
+          <div class="quiz-topline">
+            <span class="pill"><span class="pill-dot"></span> PYTHON FUNDAMENTALS</span>
+            <span class="question-counter" id="question-counter">Question 1 of {{ question_count }}</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="{{ question_count }}" aria-valuenow="0" id="progress-track">
+            <span class="progress-fill" id="progress-fill"></span>
+          </div>
+          <div class="question-content">
+            <p class="question-kicker" id="question-kicker">QUESTION 01</p>
+            <h1 id="question-title" tabindex="-1"></h1>
+            <p class="answer-instruction">Select the best answer below.</p>
+            <div class="answer-list" id="answer-list" role="group" aria-label="Answer options"></div>
+            <div class="feedback-panel" id="feedback-panel" role="status" aria-live="polite" hidden>
+              <span class="feedback-icon" id="feedback-icon" aria-hidden="true"></span>
+              <div>
+                <strong id="feedback-title"></strong>
+                <p id="feedback-explanation"></p>
+              </div>
+            </div>
+            <div class="quiz-actions">
+              <span class="selection-hint" id="selection-hint">Pick an answer to continue</span>
+              <button class="button button-primary next-button" id="next-button" type="button" disabled>
+                Next question <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <p class="error-message" id="quiz-error" role="alert" hidden></p>
+          </div>
+        </section>
+
+        <section class="screen results-screen" id="results-screen" aria-labelledby="results-title" hidden>
+          <div class="results-heading">
+            <span class="pill"><span class="pill-dot"></span> QUIZ COMPLETE</span>
+            <h1 id="results-title">Look at you go.</h1>
+            <p id="results-message"></p>
+          </div>
+          <div class="score-layout">
+            <div class="score-ring" id="score-ring" role="img" aria-label="Your score">
+              <div class="score-ring-inner">
+                <strong id="score-percentage">0%</strong>
+                <span>your score</span>
+              </div>
+            </div>
+            <div class="score-details">
+              <p class="score-fraction"><strong id="score-fraction">0 / 10</strong><span>correct answers</span></p>
+              <div class="score-stat-row">
+                <span class="stat-dot correct-dot"></span><span>Correct</span><strong id="correct-count">0</strong>
+              </div>
+              <div class="score-stat-row">
+                <span class="stat-dot incorrect-dot"></span><span>Incorrect</span><strong id="incorrect-count">0</strong>
+              </div>
+            </div>
+          </div>
+          <div class="review-section">
+            <button class="review-toggle" id="review-toggle" type="button" aria-expanded="false" aria-controls="review-list">
+              <span>Review your answers</span><span class="review-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <div class="review-list" id="review-list" hidden></div>
+          </div>
+          <div class="results-actions">
+            <button class="button button-primary" id="play-again-button" type="button">
+              Play again <span aria-hidden="true">↻</span>
+            </button>
+          </div>
+          <p class="error-message" id="results-error" role="alert" hidden></p>
+        </section>
+      </section>
+
+      <p class="page-note">Made for curious minds <span aria-hidden="true">✦</span> Keep learning, one line at a time.</p>
+    </main>
+
+    <noscript>
+      <p class="noscript-message">Enable JavaScript in your browser to play the quiz.</p>
+    </noscript>
+  </body>
+</html>

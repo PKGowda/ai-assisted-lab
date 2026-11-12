@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#101024">
+	<title>MindSpark AI | Brain Training Challenge</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<header class="topbar">
+			<a class="brand" href="#dashboard" aria-label="MindSpark AI home">
+				<span class="brand-mark" aria-hidden="true">M</span>
+				<span>MindSpark <span class="brand-accent">AI</span></span>
+			</a>
+			<div class="topbar-right">
+				<span class="local-label"><span class="status-dot"></span> Progress saved on this device</span>
+				<label class="difficulty-control" for="difficultySelect">
+					<span>Level</span>
+					<select id="difficultySelect" aria-label="Challenge difficulty">
+						<option value="easy">Easy</option>
+						<option value="medium" selected>Medium</option>
+						<option value="hard">Hard</option>
+					</select>
+				</label>
+			</div>
+		</header>
+
+		<main id="dashboard" class="dashboard-view">
+			<section class="welcome-row" aria-labelledby="welcomeTitle">
+				<div>
+					<p class="eyebrow"><span class="eyebrow-line"></span> YOUR DAILY BRAIN WORKOUT</p>
+					<h1 id="welcomeTitle">Make room for <span>brilliant.</span></h1>
+					<p class="welcome-copy">A few focused minutes. Five ways to spark your thinking.</p>
+				</div>
+				<div class="date-chip"><span class="date-spark" aria-hidden="true">✦</span><span id="todayLabel">Today</span></div>
+			</section>
+
+			<section class="stats-grid" aria-label="Your progress">
+				<article class="stat-card stat-card-primary">
+					<span class="stat-icon" aria-hidden="true">✳</span>
+					<div><p>Total points</p><strong id="totalPoints">0</strong><span class="stat-caption">earned across all sessions</span></div>
+				</article>
+				<article class="stat-card">
+					<span class="stat-icon stat-icon-lime" aria-hidden="true">↗</span>
+					<div><p>Personal best</p><strong id="bestScore">0</strong><span class="stat-caption">your highest challenge score</span></div>
+				</article>
+				<article class="stat-card">
+					<span class="stat-icon stat-icon-coral" aria-hidden="true">◎</span>
+					<div><p>Challenges done</p><strong id="completedCount">0</strong><span class="stat-caption">complete a game to add one</span></div>
+				</article>
+			</section>
+
+			<section class="daily-banner" aria-labelledby="dailyTitle">
+				<div class="daily-art" aria-hidden="true"><span>✦</span><i></i><b></b></div>
+				<div class="daily-copy">
+					<p class="eyebrow">A FRESH PUZZLE, EVERY DAY</p>
+					<h2 id="dailyTitle">Your Daily Spark</h2>
+					<p id="dailyDescription">A new challenge is waiting. Come back tomorrow for another.</p>
+				</div>
+				<button id="dailyButton" class="button button-light" type="button">Play today's challenge <span aria-hidden="true">→</span></button>
+			</section>
+
+			<div class="section-heading">
+				<div><p class="eyebrow">PICK YOUR NEXT CHALLENGE</p><h2>Five ways to think</h2></div>
+				<span class="section-note">Choose a game to begin</span>
+			</div>
+
+			<section class="games-grid" aria-label="Mini-games">
+				<article class="game-card game-memory">
+					<div class="game-card-top"><span class="game-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="game-category">MEMORY</span></div>
+					<h3>Memory Matrix</h3><p>Watch the lights. Replay the sequence.</p>
+					<button class="game-launch" type="button" data-game="memory">Play game <span aria-hidden="true">↗</span></button>
+					<span class="card-index">01</span>
+				</article>
+				<article class="game-card game-number">
+					<div class="game-card-top"><span class="game-symbol number-symbol" aria-hidden="true">2<span>→</span>?</span><span class="game-category">LOGIC</span></div>
+					<h3>Number Detective</h3><p>Find the rule hiding in the numbers.</p>
+					<button class="game-launch" type="button" data-game="number">Play game <span aria-hidden="true">↗</span></button>
+					<span class="card-index">02</span>
+				</article>
+				<article class="game-card game-color">
+					<div class="game-card-top"><span class="game-symbol color-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span class="game-category">FOCUS</span></div>
+					<h3>Color Confusion</h3><p>Ignore the word. Name the ink color.</p>
+					<button class="game-launch" type="button" data-game="color">Play game <span aria-hidden="true">↗</span></button>
+					<span class="card-index">03</span>
+				</article>
+				<article class="game-card game-reflex">
+					<div class="game-card-top"><span class="game-symbol reflex-symbol" aria-hidden="true">⌁</span><span class="game-category">SPEED</span></div>
+					<h3>Reflex Challenge</h3><p>Wait for the signal. Tap as fast as you can.</p>
+					<button class="game-launch" type="button" data-game="reflex">Play game <span aria-hidden="true">↗</span></button>
+					<span class="card-index">04</span>
+				</article>
+				<article class="game-card game-pattern">
+					<div class="game-card-top"><span class="game-symbol pattern-symbol" aria-hidden="true">○ △ □</span><span class="game-category">LOGIC</span></div>
+					<h3>Pattern Master</h3><p>Spot what comes next in the pattern.</p>
+					<button class="game-launch" type="button" data-game="pattern">Play game <span aria-hidden="true">↗</span></button>
+					<span class="card-index">05</span>
+				</article>
+			</section>
+
+			<section class="radar-section" aria-labelledby="radarTitle">
+				<div class="radar-intro"><p class="eyebrow">YOUR PLAY PROFILE</p><h2 id="radarTitle">Brain Radar</h2><p>See how you perform across different kinds of challenges.</p><p class="radar-note">These are game performance indicators, not medical measurements or validated intelligence scores.</p></div>
+				<div class="radar-metrics" id="radarMetrics" aria-label="Performance by skill"></div>
+			</section>
+			<footer class="page-footer"><span>MindSpark AI</span><span>Curiosity, in motion.</span></footer>
+		</main>
+
+		<main id="gameView" class="game-view" hidden>
+			<div id="gameContent"></div>
+		</main>
+	</div>
+</body>
+</html>
